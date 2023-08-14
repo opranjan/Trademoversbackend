@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/netfify-lambda build src"
+    "build": "nodemon index.js"
   },
   "author": "Omprakash Ranjan",
   "license": "ISC",
