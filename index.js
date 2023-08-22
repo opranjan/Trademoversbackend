@@ -142,11 +142,11 @@ app.get('/products/:id', async (req, res) => {
 
 
 // Route to get a product by productcategory
-app.get('/products/:productcategory', async (req, res) => {
+app.get('/products/productcategory/:productcategory', async (req, res) => {
   const productcategory = req.params.productcategory;
   try {
     // Find the product with the provided title in the database
-    const product = await Product.findOne({ productcategory });
+    const product = await Product.find({ productcategory });
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
@@ -158,11 +158,11 @@ app.get('/products/:productcategory', async (req, res) => {
 
 
 // Route to get a product by productsubcategory
-app.get('/products/:productsubcategory', async (req, res) => {
+app.get('/products/productsubcategory/:productsubcategory', async (req, res) => {
   const productsubcategory = req.params.productsubcategory;
   try {
     // Find the product with the provided title in the database
-    const product = await Product.findOne({ productsubcategory });
+    const product = await Product.find({ productsubcategory });
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
