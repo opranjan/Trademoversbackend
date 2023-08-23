@@ -157,6 +157,29 @@ app.get('/products/productcategory/:productcategory', async (req, res) => {
 });
 
 
+app.get('/products/productcategory/:productcategory/:id', async (req, res) => {
+  const productcategory = req.params.productcategory;
+  const id = req.params.id;
+  try {
+    // Find the product with the provided title in the database
+    const product = await  Product.findById(id);
+    
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    if (product.productcategory !== productcategory) {
+      return res.status(400).json({ message: 'Product category does not match' });
+    }
+
+
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Route to get a product by productsubcategory
 app.get('/products/productsubcategory/:productsubcategory', async (req, res) => {
   const productsubcategory = req.params.productsubcategory;
