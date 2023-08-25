@@ -200,6 +200,28 @@ app.get('/products/productsubcategory/:productsubcategory', async (req, res) => 
 
 
 
+// delete products
+app.delete('/products/:id', async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting product', error: error.message });
+  }
+});
+
+
+
+
+
+
 
 ///// create contacts 
 
